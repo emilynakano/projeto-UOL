@@ -1,3 +1,27 @@
+let nome = prompt("qual seu nome?");
+
+postarNome();
+
+function postarNome() {
+    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants ", {
+        name: `${nome}`
+    } );
+    //callback
+    promise.then(manterOnline);
+    promise.catch(repetirNome);
+}
+function manterOnline() {
+    setInterval(function() {
+        axios.post("https://mock-api.driven.com.br/api/v6/uol/status", {
+        name: `${nome}`
+    } )
+    }, 4000);
+
+}
+function repetirNome() {
+    nome = prompt("qual seu nome?");
+    postarNome()
+}
 
 
 let mensagens = []
