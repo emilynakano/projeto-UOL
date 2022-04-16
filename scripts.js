@@ -23,6 +23,25 @@ function repetirNome() {
     postarNome()
 }
 
+function adicionarMensagem() {
+    document.querySelector("input").value;
+
+    let mensagemEnviada = {
+        from: `${nome}`,
+        to: "Todos",
+        text: document.querySelector("input").value,
+        type: "message"
+    }
+
+    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagemEnviada);
+    promise.then(pegarMensagens);
+    promise.catch(atualizarPag);
+    
+}
+
+function atualizarPag () {
+    window.location.reload();
+}
 
 let mensagens = []
 
